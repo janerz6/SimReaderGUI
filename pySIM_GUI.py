@@ -142,10 +142,11 @@ class SMSPanel(QWidget):
         for idx, sms in enumerate(dict(smss).values()):
             # 0 id, 1 date, 2 from, 3 msg
             if len(sms) > 3:
-                time_val = sms[1]
-                time_parsed = time.strptime(time_val)
-                timeF = time.strftime('%Y-%m-%d %H:%M:%S', time_parsed)
-                vbox.addLayout(self.generateSMSitem(timeF, sms[2], sms[3]))
+                # TODO fix time parsing on linux
+                # time_val = sms[1]
+                # time_parsed = time.strptime(time_val)
+                # timeF = time.strftime('%Y-%m-%d %H:%M:%S', time_parsed)
+                vbox.addLayout(self.generateSMSitem(sms[1], sms[2], sms[3]))
 
                 line = QFrame()
                 line.setFrameShape(QFrame.HLine)

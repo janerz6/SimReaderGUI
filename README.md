@@ -7,9 +7,9 @@ card using serial port reader.
 * PyQt5 python library 
 
 ### Usage
-Run 'python pySIMlibGUI.py <port>' from the terminal  
+Run 'python pySIM_GUI.py <port>' from the terminal  
 You should always pass port parameter on linux systems!   
-Example: python pySIMlibGUI.py /dev/ttyUSB0 
+Example: python pySIM_GUI.py /dev/ttyUSB0 
  
 ### Useful links
 

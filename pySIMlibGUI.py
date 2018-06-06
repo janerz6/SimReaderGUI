@@ -220,7 +220,7 @@ class MetadataPanel(QWidget):
 
 
 class SimReader(QMainWindow):
-    def __init__(self):
+    def __init__(self, port="\\.\COM6"):
         QMainWindow.__init__(self)
         self.sim = pySIMlib(False)
         self.backgroundWorker = Worker(self.sim)
@@ -235,15 +235,16 @@ class SimReader(QMainWindow):
         self.window.setLayout(self.stackedLayout)
         self.setCentralWidget(self.window)
         self.initUI()
-        self.initLib("COM6")
+        self.port = port
+        self.initLib()
 
-    def initLib(self, port):
+    def initLib(self):
         try:
-            self.sim.openSession("\\.\%s" % port)
+            self.sim.openSession(self.port)
             self.statusBar().showMessage("Successfully connected to serial port.", 2000)
         except Exception as e:
             print(e)
-            self.choosePort(port)
+            self.choosePort(self.port)
 
     def initUI(self):
         self.setGeometry(50, 50, 600, 350)
@@ -346,7 +347,6 @@ class SimReader(QMainWindow):
             self.loadData(self.backgroundWorker.loadSMSs, self._finishAndSaveToFile)
         else:
             self._saveToFile()
-
 
     def _processData(self, data):
         if "error" in data:
@@ -535,5 +535,8 @@ class SimReader(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = SimReader()
+    if len(sys.argv) > 1:
+        ex = SimReader(port=sys.argv[1])
+    else:
+        ex = SimReader()
     app.exec_()

@@ -1,7 +1,7 @@
 # SIM Reader GUI
 
 Simple python application that enables reading and writing basic data from the SIM 
-card using serial port reader. The library used for serial communication with reader 
+card using serial port reader. The library (pySIMlib.py) used for serial communication with reader 
 can was found on link: https://github.com/polz113/simread  
 Many thanks to the author. 
 
